@@ -10,8 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  tag: 30
-   #'$(Build.BuildId)'
+  tag: '$(Build.BuildId)'
 
 stages:
 # Stage 1
@@ -25,13 +24,13 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    # - task: Docker@2
-    #   inputs:
-    #     containerRegistry: 'indranil1741997dockerhub'
-    #     repository: 'indranil1741997/currency-exchange-devops'
-    #     command: 'buildAndPush'
-    #     Dockerfile: '**/Dockerfile'
-    #     tags: '$(tag)'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'indranil1741997dockerhub'
+        repository: 'indranil1741997/currency-exchange-devops'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
